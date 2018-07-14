@@ -87,6 +87,19 @@
         //  search: ?id=10
         //  hash: #name
       });
+
+      // 用a链接对象解析url的组成
+      var url = "https://github.com:8080/zb5653/angular_demo?id=123#maodian";
+      var aLink = window.document.createElement('a');
+      aLink.href = url;
+      console.log(aLink);
+      console.log(aLink.protocol);
+      console.log(aLink.host);
+      console.log(aLink.hostname);
+      console.log(aLink.port);
+      console.log(aLink.pathname);
+      console.log(aLink.search);
+      console.log(aLink.hash);
     })(window);
   </script>
 </body>

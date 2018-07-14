@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>ng-repeat指令</title>
+  <style>
+    .red{
+      background-color:red;
+    }
+    .green{
+      background-color:green;
+    }
+    #box{
+      border:1px solid red;
+      height:200px;
+      width:200px;
+      transition:background-color ls ease;
+    }
+  </style>
+</head>
+
+<body ng-app="myApp">
+  <ul ng-controller="ListController">
+    <!-- ng-repeat指令会遍历数组中每一个元素，分别创建li -->
+    <!-- 同时会生成$index,$first,$last,$middle,$even,$odd供我们使用 -->
+    <!-- class={{$even?'red':'green'}} 尽量使用ng-class-->
+    <!-- ng-class会根据当前设置对象的属性和属性值决定是否添加特定类名 -->
+    <!-- <li ng-repeat="item in data" data-id="{{item.id}}" ng-class="{red:$even,green:$odd}"> -->
+    <li ng-repeat="item in data" data-id="{{item.id}}" ng-class="{red:item.name.startsWith('李'),green:$odd}">
+      <!-- 将姓李的背景标为空色 -->
+      <span>{{$first?'开始':''}}</span>
+      <strong>{{item.name}}</strong>
+      &nbsp;
+      <span>{{item.age}}</span>
+      <span>{{$first?'结束':''}}</span>
+    </li>
+  </ul>
+  <select ng-model="color">
+    <option value="red">红色</option>
+    <option value="green">绿色</option>
+  </select>
+  <div id="box" ng-class="color"></div>
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    angular.module('myApp', [])
+      .controller('ListController', ['$scope', function($scope) {
+        $scope.data = [];
+        for (var i = 1; i < 10; i++) {
+          $scope.data[$scope.data.length] = {
+            id: i,
+            name: '联系' + i,
+            age: 20 + i
+          };
+        }
+      }]);
+  </script>
+</body>
+
+</html>

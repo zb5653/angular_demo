@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>ng-repeat指令2</title>
+  <style>
+    .red {
+      color: red;
+    }
+    .tips{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(100, 100, 100, 0.5);
+      font-size: 40px;
+      line-height: 100vh;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body ng-app="myApp" ng-controller="ListController" ng-cloak>
+  <input type="text" ng-model="startName" />
+  <ul>
+    <!-- 如果遍历出来的两个item相同，则必须使用ng-repeat="item in students track by $index"
+	         $index是不同的值 -->
+    <li ng-repeat="name in students track by $index" ng-class="{red:name.startsWith(startName)}">
+      <strong>{{name}}</strong>
+    </li>
+  </ul>
+  /**
+   * ng-show是否显示
+   * ng-hide是否隐藏
+   * ng-if是否存在DOM元素
+   */
+  <div class="tips" ng-show="loading">
+    loading...
+  </div>
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    angular.module('myApp', [])
+      .controller('ListController', ['$scope','$timeout', function($scope, $timeout) {
+        $scope.students = ['张三', '张三', '张四', '李三', '王四', '赵五'];
+        $scope.loading = true;
+        $timeout(function () {
+          $scope.loading = false;
+        }, 3000);
+      }]);
+  </script>
+</body>
+
+</html>

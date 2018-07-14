@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>custom-directive</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myController">
+  <new-button></new-button>
+  <script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+    myApp.controller('myController', ['$scope', function($scope) {
+      $scope.name = 'zhangsan';
+      $scope.login = function() {
+        console.log(111);
+      };
+      $scope.$watch('name', function(now, old) {
+        console.log(now);
+        console.log(old);
+      });
+    }]);
+
+    /**
+     * 创建指令和创建controller一样：
+     * 第一个参数是名称，第二个参数是数组
+     * 数组的最后一个元素是函数，前边所有的元素是函数需要注入的对象
+     * 函数
+     */
+    myApp.directive('newButton', [function() {
+      <!-- 函数应该返回一个指令对象 -->
+      return {
+        template: '<input type="button" value="newButton" class="btn btn-lg btn-primary btn-block">'
+      };
+    }]);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body ng-app="MyApp" ng-init="username='<h1>ng-bind-html</h1>'">
+    <!-- ng-bind无法识别绑定的值中包含html的情况，为了防止跨站脚本攻击 -->
+    <strong ng-bind-html="username"></strong>
+    <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js" charset="utf-8"></script>
+    <script>
+      angular.module('MyApp',['ngSanitize']);
+    </script>
+  </body>
+</html>
