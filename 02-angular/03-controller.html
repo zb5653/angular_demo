@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angular 控制器</title>
+</head>
+<body ng-app="myApp" ng-controller="HelloController">
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    var myApp = angular.module('myApp',[]);
+    //angular在执行控制器函数时，会根据参数名字($scope或$http)去自动注入对象，所以参数名称不能错
+    //但是js压缩混淆以后参数名字会改变，所以注册控制器的正确方式是:
+    //第二个参数以数组的方式传递
+    //数组的最后一个参数就是原本的控制器函数，
+    //前面的参数就是控制器函数需要注入的对象，会依据对象注入控制器函数
+    myApp.controller('HelloController',['$scope',function(a) {
+      console.log(a);
+    }]);
+  </script>
+</body>
+</html>

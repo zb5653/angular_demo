@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angular 控制器2</title>
+</head>
+
+<body ng-app="HelloApp">
+  <table ng-controller="MyController">
+    <tr>
+      <td>用户名</td>
+      <td><input type="text" ng-model="user.username" /></td>
+    </tr>
+    <tr>
+      <td>密码</td>
+      <td><input type="text" ng-model="user.password" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="button" ng-click="login()" value="登录" /></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>{{message}}</td>
+    </tr>
+  </table>
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    //创建一个模块
+    var app = angular.module('HelloApp', []);
+    //为模块创建一个控制器
+    app.controller('MyController', ['$scope', function($scope) {
+      //数据,必须使用$scope去定义变量user，视图里才能拿到
+      // var user定义的是局部变量，视图里拿不到
+      $scope.user = {
+        username: '',
+        password: ''
+      };
+
+      //请输入用户名  输入的用户名不合法  清空
+      $scope.message = '请输入用户名';
+
+      // $scope.$watch监视方法，监视第一个参数
+      $scope.$watch('user.username', function(now, old) {
+        console.log('now is ' + now);
+        console.log('old is ' + old);
+        if (now) {
+          if (now.length < 7) {
+            $scope.message = '输入的用户名不合法';
+          } else {
+            $scope.message = '';
+          }
+        } else {
+          $scope.message = '请输入用户名';
+        }
+      });
+
+      //行为数据，因为有双向数据绑定，login方法里可以拿到模型，所以不用传参
+      $scope.login = function() {
+        console.log($scope.user);
+      };
+
+      //angular基本不操作DOM，如果真的有需要，可以使用angular提供的jqlite
+      //用法参考帮助文档
+    }]);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Angular 模块</title>
+</head>
+<body>
+  <div ng-app="myApp" ng-controller="DemoController">
+    <h1>使用NG实现双向数据绑定</h1>
+    <p><input type="text" placeholder="请输入你的姓名" ng-model="user.name"></p>
+    <p>hello <strong>{{user.name}}</strong></p>
+    <input type="button" ng-click="show()">
+  </div>
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    //注册模块 通过module函数
+    //第一个参数是这个模块的名字
+    //！！！第二个参数是这个模块依赖的模块，即使不依赖任何模块也必须传第二个参数；
+    //如果没有传递，module就不是创建一个模块，而是去找一个已经创建了的模块
+    //angular.module 返回创建的模块对象
+    var myApp = angular.module('myApp',[]);
+    //通过模块创建控制器（控制器尽量以Controller结尾），控制器属于该模块
+    //控制器函数的参数中有一个$scope，就是存储模型的空间
+    myApp.controller('DemoController',function($scope) {
+      //当控制器执行时，会自动执行的函数
+      $scope.user = {};
+      $scope.user.name = '张三';
+      //页面上需要用的方法(行为)也属于模型中的一部分
+      $scope.show = function() {
+        console.log($scope.user);
+      }
+    });
+  </script>
+</body>
+</html>

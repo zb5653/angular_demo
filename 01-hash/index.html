@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <a href="#location">寻找锚点</a>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p id="location">锚点位置就在这里
+    <pre>
+╭︿︿︿╮
+{/ ·· /}
+ ( (00) )
+  ︶︶︶
+    </pre>
+  </p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <p>文本内容</p>
+  <script>
+    (function(window){
+      window.addEventListener('hashchange',function(e){
+        // console.log(11);
+        // console.log(e);
+        // hash 属于路径URL的组成
+        console.log(window.location);
+        var hash = window.location.hash;
+        switch (hash) {
+          case '#/index/':
+            console.log('请求index');
+            break;
+          case '#/aaa/':
+            console.log('请求aaa');
+            break;
+          case '#/bbb/':
+            console.log('请求bbb');
+            break;
+          default:
+            console.log('默认请求');
+        }
+        //  可以通过window.location获取URL的全部信息
+        //  https://www.baidu.com:8080/aaa/index.html?id=10#name
+        //  protocol: https
+        //  host: www.baidu.com:8080
+        //  hostname: www.baidu.com
+        //  port: 8080
+        //  pathname: /aaa/index.html
+        //  search: ?id=10
+        //  hash: #name
+      });
+    })(window);
+  </script>
+</body>
+</html>

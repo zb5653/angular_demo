@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>angular Hello World</title>
+</head>
+<body ng-app ng-init="user.name='World'">
+  <h1>使用NG实现双向数据绑定</h1>
+  <p><input type="text" placeholder="请输入你的姓名" ng-model="user.name"></p>
+  <p>hello <strong>{{user.name}}</strong></p>
+  <script src="bower_components/angular/angular.js"></script>
+</body>
+</html>
