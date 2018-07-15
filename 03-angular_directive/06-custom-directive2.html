@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>directive路径导航</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="bower_components/angular/angular.js" charset="utf-8"></script>
+</head>
+
+<body ng-app="MyApp" ng-controller="DemoController">
+  <breadcrumb data={{pathData}}></breadcrumb>
+  <script>
+    var myApp = angular.module('MyApp', []);
+    myApp.controller('DemoController', ['$scope', function($scope) {
+      $scope.pathData = ['Home', 'Music', 'Movie', 'Study'];
+    }]);
+    <!-- //定义自定义指令 -->
+    myApp.directive('breadcrumb', [function() {
+      <!-- 返回指令对象 -->
+      return {
+        <!-- 因为要通过属性获取的值是对象，scope中获取的永远当做字符串处理了，所以使用link接收 -->
+        scope: {
+          // data:'@'
+        },
+        <!-- //指定当前指令的类型,默认是EA，E = Element, A = Attribute, C = Class, M = Comment -->
+        restrict: 'EA',
+        replace: true,
+        <!-- //这里的路径要使用/，不能使用\ -->
+        templateUrl: 'template/breadcrumb.html',
+        link: function(scope, element, attributes) {
+          scope.data = JSON.parse(attributes.data);
+
+          // <!-- console.log(attributes.data); -->
+        },
+      };
+    }]);
+  </script>
+</body>
+
+</html>

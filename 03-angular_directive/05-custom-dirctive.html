@@ -9,7 +9,7 @@
 </head>
 
 <body ng-app="myApp" ng-controller="myController">
-  <new-button></new-button>
+  <new-button primary></new-button>
   <script type="text/javascript">
     var myApp = angular.module('myApp', []);
     myApp.controller('myController', ['$scope', function($scope) {
@@ -32,7 +32,7 @@
     myApp.directive('newButton', [function() {
       <!-- 函数应该返回一个指令对象 -->
       return {
-        template: '<input type="button" value="newButton" class="btn btn-lg btn-primary btn-block">'
+        template: '<input type="button" value="newButton" class="btn btn-lg btn-primary btn-block" ng-transclude>'
       };
     }]);
   </script>
