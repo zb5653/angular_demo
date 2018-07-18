@@ -89,6 +89,8 @@
       });
 
       // 用a链接对象解析url的组成
+	  // window.location可以拿到url，angular可以通过$location获取，只是$location把#后边的当做标准URL，之前的东西不归angular管
+	  // 补充，执行环境不是浏览器，window对象就有可能不存在
       var url = "https://github.com:8080/zb5653/angular_demo?id=123#maodian";
       var aLink = window.document.createElement('a');
       aLink.href = url;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Angular 路由</title>
+</head>
+<script src="node_modules/angular/angular.js" charset="utf-8"></script>
+<script src="node_modules/angular-route/angular-route.js" charset="utf-8"></script>
+
+<body ng-app="routeApp">
+  <ul>
+    <li><a href="#/a">A</a></li>
+    <li><a href="#/b">B</a></li>
+    <li><a href="#/c">C</a></li>
+  </ul>
+  <div ng-view></div>
+  <script type="text/javascript">
+    (function(angular) {
+      // 使用路由步骤：安装，引入，依赖ngRoute模块，做路由规则，
+      // 页面中添加显示的指令，编写控制器和视图
+      var routeApp = angular.module('routeApp', ['ngRoute']);
+      routeApp.config(['$routeProvider', function($routeProvider) {
+        $routeProvider
+          .when('/a', {
+            controller: 'AController',
+            templateUrl: 'views/a.html'
+          })
+          .when('/b', {
+            controller: 'BController',
+            templateUrl: 'views/b.html'
+          })
+          .otherwise({
+            redirectTo: '/a'
+          });
+      }]);
+      routeApp.controller('AController', ['$scope', function($scope) {
+        $scope.title = '这是AController';
+      }]);
+      routeApp.controller('BController', ['$scope', function($scope) {
+        $scope.btitle = '这是BController';
+      }]);
+    })(angular);
+  </script>
+</body>
+
+</html>
